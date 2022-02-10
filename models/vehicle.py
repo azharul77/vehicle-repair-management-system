@@ -7,6 +7,14 @@ class VehicleInfo(models.Model):
     _description = 'vehicle record'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    # @api.onchange('vehicle_number')
+    # def set_customer_status(self):
+    #     is_exist = self.env['vehicle.info'].search([('vehicle_number','=',self.vehicle_number)])
+    #     if is_exist:
+    #         self.customer_type = 'old'
+    #     else:
+    #         self.customer_type = 'new'  
+
     @api.depends('vehicle_number')
     def set_customer_status(self):
         for rec in self:
